@@ -46,8 +46,7 @@ main() Funktion ist der Einstiegspunkts ins C Programm
 */
 int main(void)
 {
-	// TODO erste Zahl einlesen
-	ergebnis = -23;
+	// TODO erste Zahl einlesen	
 
 	// TODO zweite Zahl einlesen
 
@@ -55,8 +54,7 @@ int main(void)
 
 	// TODO die richtige Operation auf die Zahlen anwenden
 
-	// TODO Ergebnis ausgeben	
-	ergebnis_ausgeben(dez);
+	// TODO Ergebnis ausgeben		
 
 	return 0;
 }
