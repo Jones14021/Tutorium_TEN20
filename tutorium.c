@@ -35,7 +35,7 @@ Globale Variablen
 	kann.
 */
 enum Zahlensystem { hex, bin, dez, oct };
-enum Rechenart { plus, minus, mal, geteilt };
+enum Rechenart { addition, subtraktion, multiplikation, division, modulo, potenzieren };
 char Ziffern[] = { '0','1','2','3','4','5','6','7','8','9','A','B', 'C', 'D', 'E', 'F' };
 
 int ergebnis = 0;
@@ -45,9 +45,10 @@ int ergebnis = 0;
 main() Funktion ist der Einstiegspunkts ins C Programm
 */
 int main(void)
-{
-	// TODO erste Zahl einlesen	
-	ergebnis = zahl_einlesen();
+{	
+	// TODO alles Folgende in Endlosschleife ausführen
+
+	// TODO erste Zahl einlesen		
 
 	// TODO zweite Zahl einlesen
 
@@ -55,8 +56,7 @@ int main(void)
 
 	// TODO die richtige Operation auf die Zahlen anwenden
 
-	// TODO Ergebnis ausgeben	
-	ergebnis_ausgeben(dez);
+	// TODO Ergebnis ausgeben		
 
 	return 0;
 }
@@ -64,7 +64,7 @@ int main(void)
 /*
 input parameter		int zahlensystem (spezifiziert, in welchem Zahlensystem das Ergebnis dargestellt wird)
 returns				(0 = success, 1 = error)
--------------------------
+----------------------------------------------------------------------------------------------------------------
 Gibt das berechnete Ergebnis in der Konsole aus
 */
 short ergebnis_ausgeben(int zahlensystem)

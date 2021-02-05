@@ -18,5 +18,8 @@
     <ClCompile Include="tutorium.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="musterloesung_taschenrechner.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
