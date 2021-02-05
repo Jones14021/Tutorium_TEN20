@@ -47,6 +47,7 @@ main() Funktion ist der Einstiegspunkts ins C Programm
 int main(void)
 {
 	// TODO erste Zahl einlesen	
+	ergebnis = zahl_einlesen();
 
 	// TODO zweite Zahl einlesen
 
@@ -54,7 +55,8 @@ int main(void)
 
 	// TODO die richtige Operation auf die Zahlen anwenden
 
-	// TODO Ergebnis ausgeben		
+	// TODO Ergebnis ausgeben	
+	ergebnis_ausgeben(dez);
 
 	return 0;
 }
@@ -167,8 +169,8 @@ returns				Eine vorzeichenbehaftete, vom Nutzer eingebene Zahl
 int zahl_einlesen()
 {
 	int zahl = 0;
-	printf("%s", "Bitte Zahl eingeben: ");
-	zahl = scanf("%d", &zahl);
+	printf("%s", "Bitte Zahl eingeben: ");	
+	scanf("%d", &zahl);
 
 	return zahl;
 }
