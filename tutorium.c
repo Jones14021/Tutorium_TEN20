@@ -1,3 +1,5 @@
+#pragma warning(disable : 4996)
+
 /*
 Includes
 	Includes "kopieren" fremden Quellcode an genau diese Stelle, 
@@ -44,10 +46,8 @@ main() Funktion ist der Einstiegspunkts ins C Programm
 */
 int main(void)
 {
-	printf("Hello World");
-	
 	// TODO erste Zahl einlesen
-	ergebnis = zahl_einlesen();
+	ergebnis = -23;
 
 	// TODO zweite Zahl einlesen
 
@@ -55,9 +55,8 @@ int main(void)
 
 	// TODO die richtige Operation auf die Zahlen anwenden
 
-	// TODO Ergebnis ausgeben
-	//ergebnis = 100;
-	ergebnis_ausgeben(hex);
+	// TODO Ergebnis ausgeben	
+	ergebnis_ausgeben(dez);
 
 	return 0;
 }
@@ -74,18 +73,28 @@ short ergebnis_ausgeben(int zahlensystem)
 	// Deshalb kopieren wir das Ergebnis, statt direkt globale Variable zu verwenden.
 	int temp = ergebnis;
 
+	// weitere lokale Variablen anlegen
+	int rest = 1;
+	int currentIndex = SIZE_OUTPUT_BUFFER - 1;
+	short base = -1;
+	short is_negative_number = 0;
+
 	// Ausgabe Buffer deklarieren und alles mit Leerzeichen initialisieren
-	char ausgabe_buffer[SIZE_OUTPUT_BUFFER];
+	char ausgabe_buffer[SIZE_OUTPUT_BUFFER + 1];
 
 	for (int i = 0; i < 20; i++)
 	{
 		ausgabe_buffer[i] = ' ';
 	}
+	// letztes zeichen im C-String muss ein '\0' sein
+	ausgabe_buffer[SIZE_OUTPUT_BUFFER] = '\0';
 
-	// weitere lokale Variablen anlegen
-	int rest = 1;
-	int currentIndex = SIZE_OUTPUT_BUFFER - 1;
-	short base = -1;	
+	// wenn das Ergebnis negativ ist, speichern wir das minus und rechnen mit dem Betrag weiter
+	if (temp < 0)
+	{
+		temp *= -1;
+		is_negative_number = 1;
+	}		
 
 	// je nach auszugebendem Zahlensystem muss die Basis geändert werden
 	switch (zahlensystem)
@@ -120,16 +129,34 @@ short ergebnis_ausgeben(int zahlensystem)
 	}
 
 	// Zeichenweise Umwandlung des Ergebnisses in das gewählte Zahlensystem
-	while (temp != 0)
+	if (temp == 0)
 	{
-		rest = temp % base;
-		temp = temp / base;
-		ausgabe_buffer[currentIndex] = Ziffern[rest];
+		ausgabe_buffer[currentIndex] = Ziffern[0];
+		currentIndex--;
+	}
+	else
+	{
+		while (temp != 0)
+		{
+			rest = temp % base;
+			temp = temp / base;
+			ausgabe_buffer[currentIndex] = Ziffern[rest];
+			currentIndex--;
+		}
+	}	
+
+	// wenn die Zahl ursprünglich negativ war, fügen wir jetzt noch ein '-' an
+	if (is_negative_number)
+	{
+		ausgabe_buffer[currentIndex] = '-';
 		currentIndex--;
 	}
 
 	// Ausgabe des jetzt hoffentlich gefüllten buffers
 	printf("Ergebnis: %s", ausgabe_buffer);
+
+	// ein paar Leerzeilen, dass es schöner aussieht
+	printf("\n\n\n\n");
 
 	// return an die aufrufende Funktion (0 = success)
 	return 0;
@@ -142,7 +169,8 @@ returns				Eine vorzeichenbehaftete, vom Nutzer eingebene Zahl
 int zahl_einlesen()
 {
 	int zahl = 0;
-	zahl = scanf_s("%d", &zahl);
+	printf("%s", "Bitte Zahl eingeben: ");
+	zahl = scanf("%d", &zahl);
 
 	return zahl;
 }
