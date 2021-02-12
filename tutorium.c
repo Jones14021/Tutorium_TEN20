@@ -54,7 +54,8 @@ int main(void)
 
 	// TODO Rechenoperation abfragen
 
-	// TODO die richtige Operation auf die Zahlen anwenden
+	// TODO die richtige Operation auf die Zahlen anwenden (plus, minus, ...)
+	// TODO die Operation 'potenzieren(basis, exponent)' sowohl als Schleife, als auch rekursiv implementieren
 
 	// TODO Ergebnis ausgeben		
 
