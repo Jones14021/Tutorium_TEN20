@@ -22,7 +22,7 @@ Funktionsprototypen
 	Deshalb deklariert man am Beginn der Datei immer die Funktionsprototypen, die dem
 	Compiler schon mal alle verwendeten Funktionen und deren Struktur bekannt machen.
 */
-short ergebnis_ausgeben(int);
+short ergebnis_ausgeben(int, int);
 int zahl_einlesen();
 void print_error_message(char*);
 // TODO Funktionsprotoypen für unsere Funktionen erstellen.
@@ -37,8 +37,6 @@ Globale Variablen
 enum Zahlensystem { hex, bin, dez, oct };
 enum Rechenart { addition, subtraktion, multiplikation, division, modulo, potenzieren };
 char Ziffern[] = { '0','1','2','3','4','5','6','7','8','9','A','B', 'C', 'D', 'E', 'F' };
-
-int ergebnis = 0;
 
 
 /*
@@ -64,11 +62,12 @@ int main(void)
 
 /*
 input parameter		int zahlensystem (spezifiziert, in welchem Zahlensystem das Ergebnis dargestellt wird)
+					int ergebnis (auszugebende zahl)
 returns				(0 = success, 1 = error)
 ----------------------------------------------------------------------------------------------------------------
 Gibt das berechnete Ergebnis in der Konsole aus
 */
-short ergebnis_ausgeben(int zahlensystem)
+short ergebnis_ausgeben(int zahlensystem, int ergebnis)
 {
 	// Diese "Arbeitsvariable" wird immer weiter zerlegt.
 	// Deshalb kopieren wir das Ergebnis, statt direkt globale Variable zu verwenden.
@@ -95,30 +94,30 @@ short ergebnis_ausgeben(int zahlensystem)
 	{
 		temp *= -1;
 		is_negative_number = 1;
-	}		
+	}
 
 	// je nach auszugebendem Zahlensystem muss die Basis geändert werden
 	switch (zahlensystem)
 	{
-		case hex:
-			base = 16;
-			break;
+	case hex:
+		base = 16;
+		break;
 
-		case dez:
-			base = 10;
-			break;
+	case dez:
+		base = 10;
+		break;
 
-		case bin:
-			base = 2;
-			break;
+	case bin:
+		base = 2;
+		break;
 
-		case oct:
-			base = 8;
-			break;
+	case oct:
+		base = 8;
+		break;
 
-		default:
-			print_error_message("Ungueltiges Zahlensystem!");
-			return 1;
+	default:
+		print_error_message("Ungueltiges Zahlensystem!");
+		return 1;
 	}
 
 	// wenn etwas schiefgelaufen ist, wurde nichts in die Variable 'base' geschrieben
@@ -144,7 +143,7 @@ short ergebnis_ausgeben(int zahlensystem)
 			ausgabe_buffer[currentIndex] = Ziffern[rest];
 			currentIndex--;
 		}
-	}	
+	}
 
 	// wenn die Zahl ursprünglich negativ war, fügen wir jetzt noch ein '-' an
 	if (is_negative_number)
